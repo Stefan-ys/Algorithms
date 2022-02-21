@@ -1,5 +1,6 @@
 package graphs;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +32,15 @@ public class AdjacencyMatrix<E> {
         }
 
         return adjMatrix;
+    }
+
+
+    public List<E> translateList(List<Integer> nodes) {
+        List<E> result = new ArrayList<>();
+        for (Integer node : nodes) {
+            result.add((E) nodeTable.get(node));
+        }
+        return result;
     }
 
 }
