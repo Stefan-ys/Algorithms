@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface CombinatoricsInterface<E> {
 
-    public List<Object[]> combinationsWithoutRepetitions(Collection<E> collection, int n);
+    public List<Object[]> combinationsWithoutRepetitions(List<E> collection, int n);
 
     public List<Object[]> combinationsWithRepetitions(Collection<E> collection, int n);
 

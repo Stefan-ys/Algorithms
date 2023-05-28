@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Combinatorics<E> implements CombinatoricsInterface<E> {
     @Override
-    public List<Object[]> combinationsWithoutRepetitions(Collection<E> collection, int n) {
+    public List<Object[]> combinationsWithoutRepetitions(List<E> collection, int n) {
         List<E> elements = collection.stream().toList();
         List<Object[]> result = new ArrayList<>();
         Object[] arr = new Object[n];
@@ -38,7 +38,7 @@ public class Combinatorics<E> implements CombinatoricsInterface<E> {
 
     @Override
     public List<Object[]> permutationsWithRepetitions(Collection<E> collection) {
-        List<E> elements = collection.stream().toList();
+        List<E> elements = new ArrayList<>(collection);
         List<Object[]> result = new ArrayList<>();
         Object[] arr = new Object[elements.size()];
 
@@ -122,7 +122,10 @@ public class Combinatorics<E> implements CombinatoricsInterface<E> {
     }
 
     private void permutationsWithRepetitions(int startIndex, int endIndex, Object[] arr, List<E> elements, List<Object[]> result) {
-        result.add(arr.clone());
+        if (result.size() == elements.size()) {
+            result.add(arr.clone());
+            return;
+        }
         for (int left = endIndex - 1; left >= startIndex; left--) {
             for (int right = left + 1; right <= endIndex; right++) {
                 if (!elements.get(left).equals(elements.get(right))) {
